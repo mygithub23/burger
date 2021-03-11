@@ -18,8 +18,21 @@
       </div>
     </form>
     <ul>
+           
+            <% for(var i = 0; i <burgers.length; i++){%>
+  
+              <% if(burgers[i].status){ %> 
+              <li>
+                <%= burgers[i].custorder %>         
+              
+              </li>
+              <% } %>
+              <% } %>
+    </ul>
+    <h1> testing ========================</h1>
+    <ul>
       <% for(let burger of burgers) {%>
-      <li><%= burger.status %> - <%= burger.custorder %></li>
+      <li><%= burger.custorder %></li>
       <% } %>
     </ul>
   </body>

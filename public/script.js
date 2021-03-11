@@ -1,55 +1,59 @@
-//https://learn.co/lessons/js-looping-and-iteration-traversing-nested-objects-readme
+// Make sure we wait to attach our handlers until the DOM is fully loaded.
+$(function () {
+    $(".eat-burger").on("click", function (event) {
+        var id = $(this).data("id");
 
+        var newDevState = {
+            devoured: 1
+        };
 
+        // Send the PUT request.
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: newDevState
+        }).then(
+            function () {
+                console.log("burger devoured", newDevState);
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
 
+    $(".create-form").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
 
+        var newBurger = {
+            burger_name: $("#burger").val().trim(),
+            devoured: 0
+        };
+        $("#burger").val("");
+        // Send the POST request.
+        $.ajax("/api/burgers", {
+            type: "POST",
+            data: newBurger
+        }).then(
+            function () {
+                console.log("created new burger");
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
 
+    // $(".delete-burger").on("click", function (event) {
+    //     var id = $(this).data("id");
 
-// -------------- functions Timer -------------- //
-
-
-
- // return char count in a string
- 
-// =================== Application Logic ================== //
-
-function buildQuiz() {
-
-  // Add h3 element and append next question
-  $("<h3></h3>").appendTo("#question");
-//   $("h3").append(burger[arrayIndex].question);
-console.log('Testing ')
-  for (let i = 0; i <= burgerArray.length; i++) {
-    $(`<li id='${i}' class='active-slide'></li>`).appendTo("#answers");
-      $(`<button class='${i} btn btn-primary btn-lg btn-block' id='${i}'></button>`).appendTo(`#${i}`)
-      $(`.${i}`).append(burgerArray[arrayIndex])
-
-    } 
-   
-
-    $("#answers").css({
-      'list-style-type': 'upper-alpha',
-      'color': 'white',
-      'font-size': '2rem'
-    })
-    $("#answers").css({
-
-      'color': 'white',
-      'font-size': '2rem'
-    })
-
-    $("#question").css({
-      'border': '1px',
-      'border-radius': '3px',
-      'margin': '20px',
-      'backgroundColor': 'rgb(3, 29, 68)',
-      'color': 'white',
-      'padding': '10px'
-    })
-
-    $("button").css('margin', '5px');
-    $("button").css('text-align', 'left');
-  }
-
-  buildQuiz();
-
+    //     // Send the DELETE request.
+    //     $.ajax("/api/burgers/" + id, {
+    //         type: "DELETE"
+    //     }).then(
+    //         function () {
+    //             console.log("deleted burger", id);
+    //             // Reload the page to get the updated list
+    //             location.reload();
+    //         }
+    //     );
+    // });
+});
