@@ -4,9 +4,9 @@ const config = {
   db: { /* do not put password or any sensitive info here, done only for demo */
     host: env.DB_HOST || 'localhost',
     port: env.DB_PORT || '5432',
-    user: env.DB_USER || 'adam',
+    user: env.DB_USER || 'postgres',
     password: env.DB_PASSWORD || 'password',
-    database: env.DB_NAME || 'burger',
+    database: env.DB_NAME || 'burgers',
   },
   listPerPage: env.LIST_PER_PAGE || 10,
 };

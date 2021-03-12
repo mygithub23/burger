@@ -3,71 +3,146 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
-  <title>Eat Da Burger</title>
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="/assets/js/burgers.js"></script>
+  <!-- <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" /> -->
+  <title>Eat More burger</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+  <style>
+    #ul-burger {
+      list-style-type: upper-alpha;
+      color: white;
+      font-size: 2rem;
+    }
+
+   li button {
+      margin: 5ps;
+      padding: 10;
+    }
+
+    ul {
+      list-style-type: url("/img/gurger");
+    }
+    /* E:\Documents\_Dev\_GW\__Homework\_Assignments\Assignment-11\burger-prod-Mar11\assets\img\burger.svg
+    assets\img\burger.svg */
+    hr {
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 5px;
+      background-color: rgb(21, 18, 182);
+      opacity: 0.5;
+    }
+
+    h1 {
+      text-align: center;
+      border: 3px solid rgb(7, 8, 73);
+      margin: 10;
+      padding: 10px;
+      background-color: darkgoldenrod;
+      font-weight: 900;
+      color: whitesmoke;
+
+    }
+
+
+
+  </style>
+
 </head>
 
 <body>
   <div class="container">
-    <img src="./assets/img/eatdaburger.png" />
+
+    <a href="#menu">
+      <img src="img/burger.svg" alt="">
+      Menu
+    </a>
 
     <h1>Eat Da Burger!</h1>
     <p>Add a burger that you would like to try.</p>
     <h2>Add a Burger</h2>
+
+    <!-- Form entry -->
     <form class="create-form">
       <div class="form-group">
         <label for="burger">New Burger Name:</label>
         <input type="text" id="burger" name="burger_name" />
-        <button type="submit">Add Burger</button>
+        <button type="submit" class="btn-primary">Add Burger</button>
       </div>
     </form>
+
+
     <div class="row">
-      <div class="cols">
+      <div class="col-md-8 slide">
         <h2>New Burgers to be eaten!</h2>
 
         <div class="new-burger">
-          <button type="button" class="eat-burger"> eat burger</button>
-          <ul>
-           
+
+          <!-- Ready burger to be eaten -->
+          <ul id='ul-burger'>
+
             <% for(var i = 0; i <burgers.length; i++){%>
-  
-              <% if(burgers[i].status){ %> 
-              <li>
-                <%= burgers[i].custorder %>         
-              
-              </li>
-              <% } %>
-              <% } %>
-    </ul>
 
-
-
-            DEVOUR IT!
-          
-        </div>
-        {{/unless}} {{/each}}
-      </div>
-      <div class="cols">
-        <h2>Burgers that have been devoured!</h2>
-        
-          
-        <ul>
-           
-          <% for(var i = 0; i <burgers.length; i++){%>
-
-            <% if (!burgers[i].status){ %> 
+            <% if(burgers[i].status){ %>
             <li>
-              <%= burgers[i].custorder %>         
-            
+
+
+              <button type="button" class="eat-burger  btn-primary btn-lg btn-block" data-id=<%= burgers[i].id %>
+                data-newdevoured="<%= burgers[i].status %>  "> <%= burgers[i].burger_name %> </button>
+
+            </li>
+
+            <% } %>
+            <% } %>
+
+          </ul>
+
+
+          
+
+
+
+        </div>
+
+      </div>
+      <hr>
+          <h1> Enjoy!!!</h1>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-8 slide">
+              <h2>New Burgers to be eaten!</h2>
+      
+              <div class="new-burger">
+      
+                <!-- Ready burger to be eaten -->
+                <ul style="padding: 5px; margin:5px; list-style-type:none;" >
+
+            <% for(var i = 0; i <burgers.length; i++){%>
+            <% if (!burgers[i].status){ %>
+            <li>
+              <button type="button" class="eaten-burger  btn-primary btn-lg btn-block" style="padding: 5px; margin:5px;" data-id=<%= burgers[i].id %>
+                data-newdevoured="<%= burgers[i].status %>  "> <%= burgers[i].burger_name %> </button>
+
             </li>
             <% } %>
             <% } %>
-  </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
+  <script src="/js/burgers.js"></script>
 </body>
 
 </html>

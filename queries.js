@@ -1,56 +1,58 @@
+const Pool = require('pg').Pool
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'password',
+    port: 5432
+
+})
 
 
-app.get("/burgers", (req, res) => {
-    const sql = 'SELECT custorder FROM burger'
-    pool.query(sql, [], (err, result) => {
-        if (err) {
-            return console.log ("ERROR --------> ", err.message);
-        }
-        res.render("burger1", { burgers: result.rows });
+const getBurgers = (request, response) => {
+    pool.query('SELECT * FROM burgers', (error, result) => {
+      if (error) {
+       console.log("getBurgers Error ======>", error)
+      }
+      console.log("resule.rows ======", result.rows)
+      response.render("burger2", { burgers: result.rows });
+     // response.status(200).json(results.rows)
     })
-    });
-// GET /create
-app.get("/create", (req, res) => {
-    res.render("create", { model: {} });
-  });
+  }
+
   
-  
- // POST /create
-app.post("/create", (req, res) => {
-    const sql = "INSERT INTO burger (custorder) VALUES ($1)";
-    const { custorder } = req.body;
-    const burger = [req.body.custorder];
-    console.log("burger --------------->", burger)
-    pool.query(sql, burger , (err, result) => {
-      // if (err) ...
-      console.log("custorder --------------->", custorder)
-      res.redirect("/burgers");
-    });
-  });
+// CREATE ROUTE FUNCTION TO ADD NEW RECORD INTO THE DATABASE
+const addBurger = (request, response) => {
+  const { burger_name } = request.body
+
+  pool.query('INSERT INTO burgers (burger_name) VALUES ($1)', [burger_name], (error, results) => {
+    if (error) {
+      console.log("addBurger Error ======>", error)
+    }
+    response.status(201).send('A new burger has been added to the database')
+  })
+}
 
 
-// app.get("/", (req, res) => {
-//     db.select("*").from("task").then(data => {
-//     res.render("index", { todos: data });
-//     }).catch(err => res.status(400).json(err));
-//     });
-    // // create new task
-    // app.post("/addTask", (req, res) => {
-    // const { textTodo } = req.body;
-    // db("task").insert({ task: textTodo }).returning("*")
-    // .then(todo => {res.redirect("/")}).catch(err => {
-    // res.status(400).json({ message: "unable to create a new task" });
-    // });
-    // });
-    // app.put("/moveTaskDone", (req, res) => {
-    // const { name, id } = req.body;
-    // if (name === "todo") {
-    // db("task")
-    // .where("id", "=", id).update("status", 1)
-    // .returning("status").then(task => {res.json(task[0])})}
-    //  else {
-    // db("task").where("id", "=", id).update("status", 0)
-    // .returning("status")
-    // .then(task => {res.json(task[0])});
-    // }
-    // });
+const updateBurger = (request, response) => {
+  const id = parseInt(request.params.id)
+  //const { status } = request.body
+  const state = false;
+  pool.query(
+    'UPDATE burgers SET status = $1  WHERE id = $2',
+    [state, id],
+    (error, results) => {
+      if (error) {
+        console.log("updateBurger Error ======>", error)
+      }
+      response.status(200).send('Burger has been updated in the database')
+    }
+  )
+}
+
+
+  module.exports = {
+    getBurgers,
+    addBurger,
+    updateBurger,
+  }
