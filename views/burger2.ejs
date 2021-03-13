@@ -15,7 +15,7 @@
       font-size: 2rem;
     }
 
-   li button {
+    li button {
       margin: 5ps;
       padding: 10;
     }
@@ -23,6 +23,7 @@
     ul {
       list-style-type: url("/img/gurger");
     }
+
     /* E:\Documents\_Dev\_GW\__Homework\_Assignments\Assignment-11\burger-prod-Mar11\assets\img\burger.svg
     assets\img\burger.svg */
     hr {
@@ -45,93 +46,129 @@
 
     }
 
+    img {
+      width: 300px;
+      padding: 10px;
+      margin: 10px;
+    }
 
+    .btn {
+      padding-top: 10px;
+      max-width: 500px;
+      /* margin-top: 10px; */
+    }
 
+    .served {
+      margin-left: 10;
+      padding-left: 10;
+    }
+
+    .col-md-auto {
+
+    }
   </style>
 
 </head>
 
 <body>
-  <div class="container">
-
-    <a href="#menu">
-      <img src="img/burger.svg" alt="">
-      Menu
-    </a>
-
-    <h1>Eat Da Burger!</h1>
-    <p>Add a burger that you would like to try.</p>
-    <h2>Add a Burger</h2>
-
-    <!-- Form entry -->
-    <form class="create-form">
-      <div class="form-group">
-        <label for="burger">New Burger Name:</label>
-        <input type="text" id="burger" name="burger_name" />
-        <button type="submit" class="btn-primary">Add Burger</button>
+  <div class="container-fluid">
+      <div>
+        <a href="#menu">
+          <img src="img/burger.svg" alt="Burger" class="rounded mx-auto d-block">          
+        </a>
+        <h1>Eat Da Burger!</h1>
       </div>
-    </form>
-
 
     <div class="row">
-      <div class="col-md-8 slide">
-        <h2>New Burgers to be eaten!</h2>
 
-        <div class="new-burger">
+      <div class="col ">
+        
+          <!-- <div class="row">
+            <div class="col-md-4 slide"> -->
+                  <h3>Burgers to be eaten!</h3>
+                  <div class="new-burger">
+                    <!-- Ready burger to be eaten -->
+                    <ul id='ul-burger'>
+                      <% for(var i = 0; i <burgers.length; i++){%>
+                      <% if(burgers[i].status){ %>
+                      <li>
+                        <button type="button" class="eat-burger  btn-primary btn-lg btn-block"  style="padding: 5px; margin:5px; max-width: 400px; text-align: left;"
+                        data-id=<%= burgers[i].id %>
+                        data-newdevoured="<%= burgers[i].status %>  "> <%= burgers[i].burger_name %> </button>
+                      </li>
+                      <% } %>
+                      <% } %>
+                    </ul>
+                  </div>
+            <!-- </div>
+          </div> -->
+      </div>
 
-          <!-- Ready burger to be eaten -->
-          <ul id='ul-burger'>
-
-            <% for(var i = 0; i <burgers.length; i++){%>
-
-            <% if(burgers[i].status){ %>
-            <li>
 
 
-              <button type="button" class="eat-burger  btn-primary btn-lg btn-block" data-id=<%= burgers[i].id %>
-                data-newdevoured="<%= burgers[i].status %>  "> <%= burgers[i].burger_name %> </button>
+      <div class="col offset-md-2">
+        
+        <h2>Add a Burger</h2>
+        <!-- Form entry -->
+        <form class="create-form">
+            <div class="form-group row">
+                <div class="col-xs-4">
+                  <!-- <label for="burger">New Burger Name:</label> -->
+                  <input type="text" id="burger" name="burger_name" class="form-control 50% width of the parent" placeholder="Enter your burger order here" />
+                  <div class="btn offset-md-2">
+                    <button type="submit" class="btn btn-success">Add Burger</button>
+                  </div>
+                </div>
+                
+                
+            </div>
+        </form>
+      </div>
 
-            </li>
 
-            <% } %>
-            <% } %>
+      <div class="col served">
+        <!-- <div class="row">
+          <div class="col-md-4 slide"> -->
+            <h3>Served burgers</h3>
+            <div class="new-burger">
+              <!-- Ready burger to be eaten -->
+              <ul style="padding: 5px; margin:5px; list-style-type:none;">
+                <% for(var i = 0; i <burgers.length; i++){%>
+                <% if (!burgers[i].status){ %>
+                <li>
+                  <button type="button" class="eaten-burger  btn-primary btn-lg btn-block" style="padding: 10px; margin:10px; max-width: 400px; text-align: left;"
+                    data-id=<%= burgers[i].id %> data-newdevoured="<%= burgers[i].status %>  ">
+                    <%= burgers[i].burger_name %> </button>
+                </li>
+                <% } %>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+        <!-- </div>
+      </div> -->
 
-          </ul>
+
+    </div>
+  </div>
+
+
+
+
+
+    
+
+
 
 
           
 
 
+    <hr>
+    <h1> Enjoy!!!</h1>
+    <hr>
 
-        </div>
-
-      </div>
-      <hr>
-          <h1> Enjoy!!!</h1>
-          <hr>
-
-          <div class="row">
-            <div class="col-md-8 slide">
-              <h2>New Burgers to be eaten!</h2>
-      
-              <div class="new-burger">
-      
-                <!-- Ready burger to be eaten -->
-                <ul style="padding: 5px; margin:5px; list-style-type:none;" >
-
-            <% for(var i = 0; i <burgers.length; i++){%>
-            <% if (!burgers[i].status){ %>
-            <li>
-              <button type="button" class="eaten-burger  btn-primary btn-lg btn-block" style="padding: 5px; margin:5px;" data-id=<%= burgers[i].id %>
-                data-newdevoured="<%= burgers[i].status %>  "> <%= burgers[i].burger_name %> </button>
-
-            </li>
-            <% } %>
-            <% } %>
-          </ul>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
   <script src="https://code.jquery.com/jquery.js"></script>
