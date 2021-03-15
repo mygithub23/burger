@@ -24,16 +24,17 @@ app.use(express.static("public"));
 app.get('/', (req, res) => {
     const burgers = (db.getBurgers())
 console.log("test --->>----------- ", burgers)
-    res.sendFile('home')
+    res.render('home')
     //response.json({Welcome: 'How to create API with Node.js,EXPRESS and PostgreSQL' })
-  })
+})
+  
 // Endpoints
 // console.log( db.getBurgers)
 // app.get ('/burgers', (req, res) => {
 //     res.render('burger1', db.getBurgers)
 // })
-const burgers = (db.getBurgers)
-console.log("test result--------<<<------ ", burgers)
+// const burgers = (db.getBurgers)
+// console.log("test result--------<<<------ ", burgers.rows)
 
 
 app.get('/burgers', db.getBurgers)

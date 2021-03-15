@@ -56,6 +56,7 @@ Note Taker
 
 ## Screenshots
 
+<img src="./Assets/img/burger.gif">
 <img src="./Assets/img/burger.png">
 
 ### ✨Demo
@@ -67,7 +68,7 @@ Project Link: [https://github.com/mygithub23/burger](Burger)
 
 ## Project Objective
 
-application that will help a small business to keep track of daily tasks and notes.
+cheese burger application will help customers to choose which buerger they like to eat. .
 
 ## Preject Description
 
@@ -80,7 +81,7 @@ Need access to Internet to install all project dependencies.
 ## Technologies
 
 ```
-Nodejs, javascript, inquirer, chalk
+Nodejs, Express, PostgreSQL and ejs
 ```
 
 ## Installation
