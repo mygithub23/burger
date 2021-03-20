@@ -11,6 +11,7 @@
     <br />
     <br />
     <a href="https://www.screencast.com/t/AxxW6rOTtcs">View Demo</a>
+ 
     <a src="./Assets/img/burger.png">View Demo</a>
     ·
     <a href="">Report Bug</a>
@@ -56,8 +57,15 @@ Note Taker
 
 ## Screenshots
 
-<img src="./Assets/img/burger.gif">
-<img src="./Assets/img/burger.png">
+ <p align="center">
+    <a href="https://github.com/mygithub23/Employees-Management-System"><strong>Explore the docs »</strong></a>
+  </p>
+  <div>
+    <img src="./assets/img/burger.gif">
+  </div>
+  <div>
+    <img src="./assets/img/burger.png">
+</div>
 
 ### ✨Demo
 
@@ -80,14 +88,32 @@ Need access to Internet to install all project dependencies.
 
 ## Technologies
 
-```
 Nodejs, Express, PostgreSQL and ejs
+
+## Database
+create table in PostgreSQL database
+
+```
+CREATE TABLE burger (
+  id              SERIAL PRIMARY KEY,
+  burger_name           VARCHAR(45) NOT NULL,
+  status  boolean DEFAULT true
+);
+
+
+INSERT INTO burgers (burger_name) 
+VALUES ('cheese Burger'), ('hot burger'), ('Swiss burger');
+
 ```
 
 ## Installation
 
-on project root directory type >> npm install
+on project root directory type 
+```
+$ npm install
 
+$ npm start
+```
 ## Usage
 
 ```
